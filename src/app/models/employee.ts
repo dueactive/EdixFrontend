@@ -12,4 +12,9 @@ export class Employee {
   usuario: string;
   pwd: string;
   email: string;
+
+
+  public toString() : string {
+    return JSON.stringify(this)
+}
 }

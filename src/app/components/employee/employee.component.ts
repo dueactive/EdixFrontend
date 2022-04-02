@@ -11,12 +11,19 @@ import { Employee } from "../../models/employee";
   styleUrls: ["./employee.component.css"],
   providers: [EmployeeService],
 })
+
 export class EmployeeComponent implements OnInit {
+
+
+
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
-    this.getEmployees();
+    //this.getEmployees();
+    this.getEmployeeByname("")
+    this.getEmployeeByid("6242fd505832d232a00b45c7");
   }
+
 
   addEmployee(form?: NgForm) {
     if (form.value._id) {
@@ -38,8 +45,31 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  getEmployeeByname(nombre: string) {
+    this.employeeService.getEmployeeByname(nombre).subscribe((res) => {
+      this.employeeService.employees = res;
+    });
+  }
+
+  getEmployeeByid(_id: string) {
+    this.employeeService.getEmployeeByid(_id).subscribe((res) => {
+      this.employeeService.nuevoEmp = res;
+    });
+  }
+
   editEmployee(employee: Employee) {
     this.employeeService.selectedEmployee = employee;
+  }
+
+
+  loginEmployee(employee: Employee){
+    this.employeeService.token="RR";
+    this.employeeService.loginEmployee(employee).subscribe(
+      res => {
+        this.employeeService.token="HH";
+        this.employeeService.token = res.token;
+   
+    });
   }
 
   deleteEmployee(_id: string, form: NgForm) {
