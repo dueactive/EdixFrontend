@@ -4,9 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { Oficinas } from './models/oficinas';
 import { OficinasComponent } from './components/oficinas/oficinas.component';
-
+import { OficinaComponent } from './components/oficina/oficina.component';
+import { OficinasModalityComponent } from './components/oficinasModality/oficinasModality.component';
+import { OficinaDetailComponent } from './components/oficina-detail/oficina-detail.component';
 /*
 Este fichero es donde configuraremos las rutas de la aplicación.
 
@@ -15,6 +16,7 @@ const routes: Routes = [];
 const routes: Routes = [
     {
       path : '', //En este caso decimos el componente que mostraremos por defecto
+      //component : EmployeeComponent
       component : HomeComponent
     },
     {
@@ -25,12 +27,19 @@ const routes: Routes = [
       path : 'home', //cuando definimos el 'path' no puede empezar por '/'
       component : HomeComponent
     },
-    //Oficinas
+    //Oficina
     {
-      path : 'oficinas', //cuando definimos el 'path' no puede empezar por '/'
-      component : OficinasComponent
+      path : 'oficina', //cuando definimos el 'path' no puede empezar por '/'
+       component : OficinaComponent
+    },
+    //Oficina Detail
+    {
+      path : 'oficinadetails/:id', //cuando definimos el 'path' no puede empezar por '/'
+       component : OficinaDetailComponent
     },
     {path : 'oficinas/:id', component : OficinasComponent},
+    //Oficinas Alquiler
+    {path : 'oficinas/modality/:modality', component : OficinasModalityComponent},
     //Employee
     {path : 'employee', component : EmployeeComponent},
     //aqui estamos pasando parametros en el pahtparam, eje: componente1/spiderman/marvel

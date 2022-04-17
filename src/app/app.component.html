@@ -1,41 +1,166 @@
-<div class="container">
-  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-      <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+
+<header class="site-header sticky-top py-1">
+  <nav class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" href="#" aria-label="Product">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
     </a>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-    </ul>
-
-    <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-outline-primary me-2"><a routerLink="/login">Login</a></button>
-      <button type="button" class="btn btn-primary">Sign-up</button>
+    <div class="text-end">
+      <button type="button" class="btn btn-outline-light me-2"  [routerLink]="[ '/oficinadetails']">Servicios para Oficinas</button>
+      <button type="button" class="btn btn-outline-light me-2" (click)="formularioContacto()">contactar</button>
+      <button type="button" class="btn btn-warning"  [routerLink]="[ '/login']">Login</button>
+      <button type="button" class="btn btn-secondary me-2">Sign-up</button>
     </div>
-  </header>
-</div>
+  </nav>
+</header>
 
-<div class="container p-4">
-  <!--<app-login></app-login>-->
 
-  <!--<app-employee></app-employee>-->
+<div class="container-xl">
   <router-outlet></router-outlet>
-  
 </div>
- <!--Footer-->
-<div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-    </ul>
-    <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
-  </footer>
+
+<div id="myModal"  class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      
+      <p class="title">Solicitud de información</p>
+      <p>Déjanos tus datos y te contestaremos lo antes posible. Muchas gracias.</p>
+      <span id="close" class="close" (click)="ocultarformularioContacto()">×</span>
+    </div>
+    <div class="modal-body">
+      <form #emailcontactForm="ngForm" (ngSubmit)="addFormularioContacto(emailcontact)">
+        <script>
+          function copiarURL(){
+            document.getElementById("originURL").value=URLorigin;
+          }
+        </script>
+        <input type="utm" value="" id="originURL" style="display: none" >
+        <label for="">Nombre*</label>
+        <input type="text" name="nombre" placeholder="Introduce tu nombre" required onKeyUp="copiarURL()">
+
+        <label for="">Email*</label>
+        <input type="email" placeholder="Introduce tu email" required>
+
+        <label for="">Teléfono</label>
+        <input type="tel" placeholder="Introduce tu teléfono">
+
+        <input class="check" type="checkbox" id="we-call-you">
+        <label for="we-call-you">¿Te llamamos?</label>
+
+        <label for="">Empresa</label>
+        <input type="text" name="empresa" placeholder="Introduce el nombre de tu empresa">
+
+        <label for="">Provincia*</label>
+        <div class="select-container">
+          <div class="select-arrow"><i class="ion-ios-arrow-down"></i></div>
+          <select class="province" required>
+            <option value="-1" selected="" disabled="">Selecciona provincia</option>
+            <option value="Alicante">Alicante</option>
+            <option value="Barcelona">Barcelona</option>
+            <option value="Guipuzcoa">Guipuzcoa</option>
+            <option value="Madrid">Madrid</option>
+            <option value="Mallorca">Mallorca</option>
+            <option value="Málaga">Málaga</option>
+            <option value="Sevilla">Sevilla</option>
+            <option value="Valencia">Valencia</option>
+            <option value="Vizcaya">Vizcaya</option>
+            <option value="Zaragoza">Zaragoza</option>
+          </select>
+        </div>
+
+        <label for="">Modalidad*</label>
+        <div class="select-container">
+          <div class="select-arrow"><i class="ion-ios-arrow-down"></i></div>
+          <select class="modality" required>
+            <option value="-1" selected="" disabled="">Modalidad</option>
+            <option value="Alquiler">Alquiler</option>
+            <option value="Espacios de trabajo flexibles">Espacios de trabajo flexibles</option>
+          </select>
+        </div>
+
+        <div class="modalidad-alquiler">
+          <label for="">Cantidad de puestos</label>
+          <select name="workspaces" class="tamaño" placeholder="Cantidad de puestos">
+            <option data-value="todos" value="todos">Cantidad de puestos</option>
+            <option data-value="30" value="30">Hasta 30 puestos (hasta 450 m²)</option>
+            <option data-value="100" value="100">30-100 puestos (450-1.500 m²)</option>
+            <option data-value="300" value="300">100-300 puestos (1.500-4.500 m²)</option>
+            <option data-value="300+" value="300+">Más de 300 puestos (más de 4.500 m²)</option>
+          </select>
+        </div>
+
+        <div class="modalidad-coworking">
+          <label for="">Cantidad de puestos</label>
+          <input type="number" name="workspaces" class="tamaño" placeholder="Introduce la cantidad de puestos que necesitas"/>
+        </div>
+
+        <label for="">Mensaje*</label>
+        <textarea placeholder="Escribe tu mensaje" rows="4" required></textarea>
+
+        <input class="check" type="checkbox" id="acceptance" required> <span class="legal">He leído y acepto el <a target="_blank" href="/aviso-legal">Aviso Legal</a> y la <a target="_blank" href="/politica-de-privacidad">Política de Privacidad</a></span>
+
+        <div class="call-us">¿Prefieres llamarnos? <a href="tel:+34911014656" class="phone">91 101 46 56</a></div>
+
+        <button type="button" class="submitBtn" style="display:none;">Enviar</button>
+        <button type="button" class="g-recaptcha" data-sitekey="6LfoU-QZAAAAAFKZfRxnSz9QnLa48pKNfrUmZf5G" data-callback='onSubmitContact' data-action='submit'>Enviar</button>
+
+        <p class="form-smalltext">
+          CBRE REAL ESTATE, S.A, le informa que los datos de carácter personal proporcionados quedarán incorporados en sus bases de datos, y con base en su interés legítimo, tratará sus datos de contacto con la finalidad de mantener relaciones de cualquier índole, prestar y ofrecer sus productos y servicios. Los datos recogidos son almacenados según la confidencialidad y las medidas de seguridad legalmente establecidas.
+          Asimismo, CBRE REAL ESTATE, S.A. le informa que los datos facilitados podrán ser cedidos a terceras compañías que ofrecen bienes y servicios similares a los aquí ofrecidos.
+          Mediante la firma del presente formulario usted da su consentimiento para que CBRE le envíe información de su interés sobre los productos y servicios de CBRE REAL ESTATE, S.A. y CBRE VALUATION ADVISORY, S.A.
+          Puede ejercer los derechos de acceso, cancelación, oposición, rectificación, supresión, limitación del tratamiento, portabilidad de los datos, y a no ser objeto de decisiones individuales automatizadas, incluida la elaboración de perfiles; a través de la dirección de correo electrónico spain.gdpr@cbre.com, personalmente en las oficinas de CBRE REAL ESTATE, S.A, o mediante comunicación escrita, acompañada de copia del correspondiente documento nacional de identidad, dirigida a CBRE REAL ESTATE, S.A, Paseo de la Castellana 202, planta 8ª,  28046 Madrid.
+          Para más información, no dude en consultar nuestra política de privacidad: <a href="https://test-oficinas.cbre.es/politica-de-privacidad/">https://test-oficinas.cbre.es/politica-de-privacidad/</a>
+        </p>
+      </form>
+    </div>
+  </div>
 </div>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+      <small class="d-block mb-3 text-muted">&copy; 2017–2021</small>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Features</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">Cool stuff</a></li>
+        <li><a class="link-secondary" href="#">Random feature</a></li>
+        <li><a class="link-secondary" href="#">Team feature</a></li>
+        <li><a class="link-secondary" href="#">Stuff for developers</a></li>
+        <li><a class="link-secondary" href="#">Another one</a></li>
+        <li><a class="link-secondary" href="#">Last time</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Resources</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">Resource name</a></li>
+        <li><a class="link-secondary" href="#">Resource</a></li>
+        <li><a class="link-secondary" href="#">Another resource</a></li>
+        <li><a class="link-secondary" href="#">Final resource</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Resources</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">Business</a></li>
+        <li><a class="link-secondary" href="#">Education</a></li>
+        <li><a class="link-secondary" href="#">Government</a></li>
+        <li><a class="link-secondary" href="#">Gaming</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>About</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">Team</a></li>
+        <li><a class="link-secondary" href="#">Locations</a></li>
+        <li><a class="link-secondary" href="#">Privacy</a></li>
+        <li><a class="link-secondary" href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+

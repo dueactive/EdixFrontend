@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { OficinasService } from "../../services/oficinas.service";
-
+import { NgForm } from "@angular/forms";
+import { Oficinas } from "../../models/oficinas";
 
 @Component({
   selector: 'app-home',
@@ -10,26 +11,28 @@ import { OficinasService } from "../../services/oficinas.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private oficinasService: OficinasService) { }
+  constructor(private oficinasService: OficinasService) {}
 
   ngOnInit() {
-    this.getOficinas();
+    this.getOficinasDestacadas("Alquiler");
+    this.getOficinasDestacadas("Coworking");
+    
   }
-
 
 
   getOficinas() {
-    this.oficinasService.getEOficinas().subscribe((res) => {
+    this.oficinasService.getOficinas().subscribe((res) => {
       this.oficinasService.oficinas = res;
     });
   }
 
-  getOficinaByname(nombre: string) {
-    this.oficinasService.getOficinaByname(nombre).subscribe((res) => {
-      this.oficinasService.oficinas = res;
+  getOficinasDestacadas(modality: String) {
+    this.oficinasService.getOficinasDestacadas(modality).subscribe((res) => {
+      if (modality=="Alquiler"){
+        this.oficinasService.oficinasDestacadasAlquiler = res;
+      } else
+        this.oficinasService.oficinasDestacadasCoworking = res;
     });
   }
-
-
 
 }
