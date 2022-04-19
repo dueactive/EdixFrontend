@@ -16,6 +16,7 @@ import { OficinaDetailComponent } from './components/oficina-detail/oficina-deta
 import { CreateProfileComponent } from './components/create-profile/create-profile.component';
 import { AllProfilesComponent } from './components/all-profiles/all-profiles.component';
 import { CreateProfileSecundaryComponent } from './components/create-profile-secundary/create-profile-secundary.component';
+import { OficinasFiltroComponent } from './components/oficinas-filtro/oficinas-filtro.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CreateProfileSecundaryComponent } from './components/create-profile-sec
     OficinaDetailComponent,
     CreateProfileComponent,
     AllProfilesComponent,
-    CreateProfileSecundaryComponent
+    CreateProfileSecundaryComponent,
+    OficinasFiltroComponent
   ],
   imports: [
     BrowserModule,

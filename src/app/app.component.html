@@ -2,14 +2,15 @@
 <header class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2" href="#" aria-label="Product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="none" stroke="orange" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Oficinas</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
     </a>
 
     <div class="text-end">
       <button type="button" class="btn btn-outline-light me-2"  [routerLink]="[ '/oficinadetails']">Servicios para Oficinas</button>
+      <button type="button" id="mantenimiento" class="btn btn-outline-light me-2"  [routerLink]="[ '/oficina']">Mantenimiento Oficinas</button>
       <button type="button" class="btn btn-outline-light me-2" (click)="formularioContacto()">contactar</button>
-      <button type="button" class="btn btn-warning"  [routerLink]="[ '/login']">Login</button>
-      <button type="button" class="btn btn-secondary me-2">Sign-up</button>
+      <button type="button" id="login" class="btn btn-warning"  [routerLink]="[ '/login']">Login</button>
+      <button type="button" class="btn btn-secondary me-2" (click)="signUp()">Sign-up</button>
     </div>
   </nav>
 </header>
